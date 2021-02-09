@@ -51,9 +51,7 @@ def update_page(dst_dir: str):
     for f in wheels:
         name = Path(f).name
         files.append(f'{basename}/{name}')
-    print(files)
     files.sort()
-    print(files)
     links = generate_links(files)
     html = generate_html(links)
     f = Path(dst_dir) / 'index.html'
