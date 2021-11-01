@@ -29,7 +29,7 @@ def get_args() -> str:
 def generate_links(files: List[str]) -> str:
     ans = ''
     for f in files:
-        ans += f'<a href="{f}">{f}</a><br/>\n'
+        ans += f'<a href="{f}">{Path(f).name}</a><br/>\n'
     return ans
 
 
