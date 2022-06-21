@@ -42,16 +42,23 @@ def generate_html(links: str):
     ans += '</html>'
     return ans
 
+def sort_wheel(x):
+    f = x.split('.')
+    for i in range(len(f)):
+    	if f[i].isnumeric():
+    	  f[i] = int(f[i])
+    return f
 
 def update_page(dst_dir: str):
     wheel_dir = Path(dst_dir) / 'whl'
     wheels = glob.glob(f'{wheel_dir}/*.whl')
+    wheels = sorted(wheels, reverse=True, key=sort_wheel)
     files = []
     basename = Path(wheel_dir).name
     for f in wheels:
         name = Path(f).name
         files.append(f'{basename}/{name}')
-    files.sort()
+    #files.sort()
     links = generate_links(files)
     html = generate_html(links)
     f = Path(dst_dir) / 'index.html'
